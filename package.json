@@ -1,0 +1,20 @@
+{
+  "name": "ds-101-workshop",
+  "version": "0.0.0-development",
+  "description": "Design Systems 101 Workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/component-driven/ds-101-workshop.git"
+  },
+  "keywords": [],
+  "author": "Andrey Okonetchnikov <andrey@okonet.ru>",
+  "license": "CC AT-NC 4.0",
+  "bugs": {
+    "url": "https://github.com/component-driven/ds-101-workshop/issues"
+  },
+  "homepage": "https://github.com/component-driven/ds-101-workshop#readme"
+}
