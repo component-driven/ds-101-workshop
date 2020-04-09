@@ -1,0 +1,97 @@
+import myTheme from "./theme/";
+
+export const theme = {...myTheme};
+
+<Head>
+	<title>Design Systems 101</title>
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@jxnblk" />
+	<meta name="twitter:title" content="My Presentation" />
+	<meta name="twitter:description" content="A really great presentation" />
+	<meta name="twitter:image" content="https://example.com/card.png" />
+</Head>
+
+<Footer>
+
+[Component-Driven](https://component-driven.io)
+
+</Footer>
+
+# My Presentation
+
+<Notes>
+test
+</Notes>
+
+---
+
+<Center>
+	<Figure
+		src={require('file-loader!./assets/component-driven.svg')}
+		alt="Component-driven Logo"
+		caption={
+			<a href="https://component-driven.io">https://component-driven.io</a>
+		}
+	></Figure>
+</Center>
+
+---
+
+# H1
+
+## H2
+
+### H3
+
+This is paragraph with `inline` code
+
+---
+
+# Ordered List
+
+1. List
+1. List
+1. List
+1. List
+
+---
+
+<Image src="./assets/colorsnapper.png" size="contain" />
+
+---
+
+# Code Sample
+
+```jsx
+function Code({ children, language, inline = false }) {
+	if (typeof children !== "string") {
+		return (
+			<pre style={{ color: "firebrick" }}>
+				Code: `children` must be a string
+			</pre>
+		);
+	}
+	return (
+		<Prism
+			{...codeTheme}
+			useInlineStyles
+			language={language}
+		>
+			{children.replace(/\t/, "  ")}
+		</Prism>
+	);
+}
+```
+
+---
+
+<Steps>
+
+- One
+- Two
+- Three
+- Four
+
+</Steps>
+
+---
