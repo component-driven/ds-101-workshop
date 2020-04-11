@@ -4,7 +4,6 @@
   "description": "Design Systems 101 Workshop",
   "main": "index.js",
   "scripts": {
-    "postinstall": "patch-package",
     "test": "echo \"Error: no test specified\" && exit 1",
     "posttest": "npm run format",
     "slides:start": "mdx-deck ./slides/ds101-worskhop.mdx",
