@@ -1,18 +1,20 @@
-import React from 'react';
-import Flex from '../components/Flex';
+/** @jsx jsx */
+import * as React from "react";
+import { jsx, Flex } from "theme-ui";
 
-const Center = ({ children }) => {
+export default ({ children }) => {
 	return (
 		<Flex
-			width="100vw"
-			height="100vh"
-			flexDirection="column"
-			alignItems="center"
-			justifyContent="center"
+			sx={{
+				width: "100vw",
+				height: "100vh",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "center",
+			}}
 		>
 			{children}
 		</Flex>
 	);
 };
 
-export default Center;

@@ -1,8 +1,7 @@
-/* @jsx jsx */
-import { jsx, css } from 'theme-ui';
-import styled from '@emotion/styled';
-import { keyframes } from '@emotion/core';
-import { Invert } from '../';
+import { css } from "theme-ui";
+import styled from "@emotion/styled";
+import { keyframes } from "@emotion/core";
+import { Invert } from "mdx-deck";
 
 const animation = keyframes`
 	0% {
@@ -17,9 +16,9 @@ const animation = keyframes`
 `;
 
 const Boom = styled(Invert)(
-	css(theme => ({
+	css((theme) => ({
 		background: `linear-gradient(270deg, ${theme.colors.primary}, ${theme.colors.accent})`,
-		backgroundSize: '400% 400%',
+		backgroundSize: "400% 400%",
 		animation: `${animation} 10s infinite`,
 	}))
 );

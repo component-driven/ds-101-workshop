@@ -1,39 +1,35 @@
-import { LiveCode as XLiveCode } from 'mdx-deck-live-code';
-import { ThemeProvider } from 'styled-components';
-import Group from 'react-group';
-import Text from '../../../src/components/primitives/Text';
-import theme from '../../../src/theme';
-import Heading from '../../../src/components/primitives/Heading';
-import Box from '../../../src/components/primitives/Box';
-import Flex from '../../../src/components/primitives/Flex';
-import Input from '../../../src/components/primitives/Input';
-import Button from '../../../src/components/primitives/Button';
-import Grid from '../../../src/components/primitives/Grid';
-import Stack from '../../../src/components/primitives/Stack';
+/** @jsx jsx */
+import * as React from "react";
+import { jsx, Box, Grid, Flex } from "theme-ui";
+import { LiveProvider, LiveError, LivePreview, LiveEditor } from "react-live";
+import codeTheme from "../codeTheme";
 
-export default ({ code, size, title }) => {
+export default ({ code, scope, language }) => {
 	return (
-		<div>
-		<XLiveCode
-			title={title}
-			code={code}
-			size={size}
-			providerProps={{
-				scope: {
-					Box,
-					Flex,
-					Grid,
-					Stack,
-					Group,
-					Text,
-					Heading,
-					Input,
-					Button,
-					ThemeProvider,
-					theme,
-				},
-			}}
-		/>
-		</div>
+		<LiveProvider code={code} scope={scope} language={language} theme={codeTheme}>
+			<Grid gap={0} columns={2} sx={{ height: "100vh", width: "100vw" }}>
+				<Box sx={{ borderRight: "1px solid" }}>
+					<LivePreview />
+					<LiveError />
+				</Box>
+				<Flex
+					sx={{
+						p: 4,
+						borderLeft: "1px solid",
+						bg: "#eff3ff",
+						width: "100%",
+					}}
+				>
+					<LiveEditor
+						sx={(theme) => ({
+							fontFamily: `${theme.fonts.monospace}!important`,
+							fontSize: `${theme.fontSizes.s}!important`,
+							width: "100%",
+							"textarea:focus": { outline: "none" },
+						})}
+					/>
+				</Flex>
+			</Grid>
+		</LiveProvider>
 	);
 };

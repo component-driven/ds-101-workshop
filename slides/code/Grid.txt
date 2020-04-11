@@ -1,3 +1,4 @@
+/* eslint-disable */
 <ThemeProvider theme={theme}>
   <Grid
     m={4}

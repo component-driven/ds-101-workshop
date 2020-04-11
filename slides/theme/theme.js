@@ -7,11 +7,10 @@ export default {
 		monospace: 'MonoLisa, "Fira Code", monospace',
 	},
 	fontSizes: {
-		s: "1.8vmax",
-		m: "2.7vmax",
-		l: "4.3vmax",
-		xl: "6.5vmax",
-		xxl: "10vmax",
+		s: "1em",
+		m: "1.5em",
+		l: "2.25em",
+		xl: "4em",
 	},
 	colors: {
 		heading: "inherit",
@@ -27,26 +26,30 @@ export default {
 	},
 	text: {
 		heading: {
-			m: 0,
-			mb: 4,
+			m: 5,
 			fontSize: "xl",
+			textAlign: "center",
 		},
 	},
 	styles: {
 		root: {
+			fontSize: "1vmax",
 			fontFeatureSettings: `'kern', 'pnum', common-ligatures contextual historical-ligatures`,
 			WebkitFontKerning: "normal",
 			fontKerning: "normal",
 			fontVariantNumeric: "proportional-nums",
 			fontVariantLigatures: "common-ligatures contextual historical-ligatures",
-			code: {
+			"code, pre": {
 				fontFamily: "monospace",
 			},
 		},
 		Slide: {
-			justifyContent: "start",
-			py: 5,
-			px: 4,
+			// justifyContent: "start",
+		},
+		Split: {
+			px: 5,
+			width: "100%",
+			alignItems: "start",
 		},
 		h1: {
 			variant: "text.heading",
@@ -60,6 +63,9 @@ export default {
 			variant: "text.heading",
 			fontSize: "m",
 		},
+		ul: {
+			p: 0,
+		},
 		pre: {
 			color: "secondary",
 			fontFamily: "monospace",
@@ -67,10 +73,19 @@ export default {
 		inlineCode: {
 			color: "secondary",
 			fontFamily: "monospace",
+			fontSize: "85%",
 		},
 		code: {
 			color: "secondary",
 			fontFamily: "monospace",
+		},
+		figcaption: {
+			textAlign: "center",
+			fontSize: "s",
+		},
+		blockquote: {
+			textAlign: "center",
+			fontSize: "l",
 		},
 	},
 };

@@ -12,6 +12,6 @@ export const getLanguage = (className) => {
 };
 
 export default (props) => {
-	const language = getLanguage(props.className);
+	const language = props.language || getLanguage(props.className);
 	return <Prism language={language} style={codeTheme.style} {...props} />;
 };

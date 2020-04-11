@@ -1,29 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Head, Box, Flex, Text, Heading } from '../';
+import React from "react";
+import PropTypes from "prop-types";
+import { Box, Text, Heading } from "theme-ui";
+import { Head, Invert } from "mdx-deck";
 
 const Cover = ({ author, title }) => (
-	<Flex
-		flexDirection="column"
-		alignItems="center"
-		justifyContent="center"
-		bg="primary"
-		color="background"
-		width="100vw"
-		height="100vh"
-	>
+	<Invert>
 		<Head>
 			<title>{title}</title>
 		</Head>
-		<Flex alignItems="center" flex="1">
-			<Heading as="h1">{title}</Heading>
-		</Flex>
-		<Flex width={1} p={4} alignItems="center">
-			<Box mx="auto" fontSize="2.5vw">
-				<Text as="p">by {author}</Text>
-			</Box>
-		</Flex>
-	</Flex>
+		<Heading as="h1">{title}</Heading>
+		<Box mx="auto" fontSize="2.5vw">
+			<Text as="p">by {author}</Text>
+		</Box>
+	</Invert>
 );
 
 Cover.propTypes = {

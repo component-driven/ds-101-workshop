@@ -1,14 +1,15 @@
+/** @jsx jsx */
+import * as React from "react";
+import { jsx, Box } from "theme-ui";
 
-import styled from '@emotion/styled';
-import Box from './Box';
-
-export const Video = styled(Box)({
-	display: 'block',
-	objectFit: 'contain',
-});
-
-Video.defaultProps = {
-	as: 'video',
-};
-
-export default Video;
+export default (props) => (
+	<Box
+		as="video"
+		sx={{
+			width: "100%",
+			height: "100%",
+			objectFit: "contain",
+		}}
+		{...props}
+	/>
+);

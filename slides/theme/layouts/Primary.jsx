@@ -1,6 +1,4 @@
 import React from 'react';
-import { Invert } from '../';
+import { Invert } from 'mdx-deck';
 
-const Primary = props => <Invert bg="primary" {...props} />;
-
-export default Primary;
+export default props => <Invert bg="primary" {...props} />;

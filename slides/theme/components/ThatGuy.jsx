@@ -1,5 +1,6 @@
 /* @jsx jsx */
-import { jsx, Box } from 'theme-ui';
+import * as React from 'react';
+import { jsx, Box, Image } from 'theme-ui';
 import { Appear } from 'mdx-deck';
 
 function ThatGuy(props) {
@@ -14,8 +15,8 @@ function ThatGuy(props) {
 				}}
 				{...props}
 			>
-				<img
-					src={require('file-loader!../../assets/that-guy.png')}
+				<Image
+					src={require('../../assets/that-guy.png')}
 					alt="That guy"
 				/>
 			</Box>

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Invert } from '../';
+import React from "react";
+import { Color } from "mdx-deck";
 
-const Secondary = props => <Invert bg="secondary" {...props} />;
-
-export default Secondary;
+export default (props) => (
+	<Color bg="secondary" color="background" {...props} />
+);

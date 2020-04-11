@@ -4,6 +4,7 @@
   "description": "Design Systems 101 Workshop",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "test": "echo \"Error: no test specified\" && exit 1",
     "posttest": "npm run format",
     "slides:start": "mdx-deck ./slides/ds101-worskhop.mdx",
@@ -26,12 +27,15 @@
     "gatsby-theme-mdx-deck": "^4.1.0",
     "mdx-deck": "^4.1.1",
     "prop-types": "^15.7.2",
+    "react-live": "2.2.2",
     "react-syntax-highlighter": "^12.2.1",
+    "react-tweet-embed": "1.2.2",
     "theme-ui": "0.3.1"
   },
   "devDependencies": {
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
+    "patch-package": "6.2.2",
     "prettier": "^2.0.4"
   },
   "husky": {

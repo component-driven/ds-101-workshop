@@ -2,17 +2,17 @@
   <Box p={5}>
     <Group
     /*
-			separator={
-				<Box
-					as="hr"
-					pr={2}
-					ml={2}
-					border="none"
-					borderBottom="thin"
-					borderColor="secondary"
-				/>
-			}
-			 */
+      separator={
+        <Box
+            as="hr"
+            pr={2}
+            ml={2}
+            border="none"
+            borderBottom="thin"
+            borderColor="secondary"
+        />
+    }
+     */
     >
       <Box
         as={"span"}

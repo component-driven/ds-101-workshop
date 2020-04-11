@@ -1,15 +1,6 @@
 import myTheme from "./theme/";
 
-export const theme = {...myTheme};
-
-<Head>
-	<title>Design Systems 101</title>
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@jxnblk" />
-	<meta name="twitter:title" content="My Presentation" />
-	<meta name="twitter:description" content="A really great presentation" />
-	<meta name="twitter:image" content="https://example.com/card.png" />
-</Head>
+export const theme = { ...myTheme };
 
 <Footer>
 
@@ -17,23 +8,34 @@ export const theme = {...myTheme};
 
 </Footer>
 
-# My Presentation
-
-<Notes>
-test
-</Notes>
+<Cover
+	title="Design Systems 101"
+	author="Andrey Okonetchnikov & Varya Stepanova"
+/>
 
 ---
 
-<Center>
-	<Figure
-		src={require('file-loader!./assets/component-driven.svg')}
-		alt="Component-driven Logo"
-		caption={
-			<a href="https://component-driven.io">https://component-driven.io</a>
-		}
-	></Figure>
-</Center>
+<Primary>
+
+# Primary slide
+
+</Primary>
+
+---
+
+<Secondary>
+
+# Secondary slide
+
+</Secondary>
+
+<Notes>Secondary slide</Notes>
+
+---
+
+> Takeaway slide
+
+<Notes>Takeaway slide</Notes>
 
 ---
 
@@ -47,6 +49,8 @@ This is paragraph with `inline` code
 
 ---
 
+<SplitTitle>
+
 # Ordered List
 
 1. List
@@ -54,11 +58,15 @@ This is paragraph with `inline` code
 1. List
 1. List
 
----
-
-<Image src="./assets/colorsnapper.png" size="contain" />
+</SplitTitle>
 
 ---
+
+<Image src={require("./assets/colorsnapper.png")} size="contain" />
+
+---
+
+<SplitTitle>
 
 # Code Sample
 
@@ -72,18 +80,22 @@ function Code({ children, language, inline = false }) {
 		);
 	}
 	return (
-		<Prism
-			{...codeTheme}
-			useInlineStyles
-			language={language}
-		>
+		<Prism {...codeTheme} useInlineStyles language={language}>
 			{children.replace(/\t/, "  ")}
 		</Prism>
 	);
 }
 ```
 
+
+</SplitTitle>
+<ThatGuy />
+
 ---
+
+<SplitTitle>
+
+# List with steps
 
 <Steps>
 
@@ -93,5 +105,14 @@ function Code({ children, language, inline = false }) {
 - Four
 
 </Steps>
+</SplitTitle>
 
 ---
+
+<Figure
+    src={require('./assets/component-driven.svg')}
+    alt="Component-driven Logo"
+    caption={
+        <a href="https://component-driven.io">https://component-driven.io</a>
+    }
+/>
