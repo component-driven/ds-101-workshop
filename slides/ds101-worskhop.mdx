@@ -1,5 +1,7 @@
 import CDTheme from "@component-driven/mdx-deck-theme";
 
+import Timetable from "./components/Timetable";
+
 export const theme = { ...CDTheme };
 
 <Footer>
@@ -115,4 +117,54 @@ function Code({ children, language, inline = false }) {
     caption={
         <a href="https://component-driven.io">https://component-driven.io</a>
     }
+/>
+
+---
+
+# Timetable
+
+<Timetable
+    start="9:30"
+    items={[
+	    {
+		    title: "Introduction",
+		    length: "0:30"
+	    },
+        {
+            title: "Ice breaker: baking a toast",
+            length: "0:30"
+        },
+        {
+            title: "Introduction to the design systems",
+            length: "0:45"
+        },
+        {
+            title: "Prepare! Naming exercise",
+            length: "0:30"
+        },
+        {
+            title: "break",
+            length: "0:15"
+        },
+        {
+            title: "Start! UI inventory",
+            length: "01:00"
+        },
+        {
+            title: "Execute! Parts of design system",
+            length: "0:45"
+        },
+        {
+            title: "break",
+            length: "0:15"
+        },
+        {
+            title: "Maintain! Pattern Journey",
+            length: "2:00"
+        },
+        {
+            title: "Recap",
+            length: "0:30"
+        }
+    ]}
 />
