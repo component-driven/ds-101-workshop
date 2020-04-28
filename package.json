@@ -8,7 +8,7 @@
     "posttest": "npm run format",
     "slides:start": "mdx-deck ./slides/ds101-worskhop.mdx",
     "slides:build": "mdx-deck build ./slides/ds101-worskhop.mdx -d ./build/slides --basepath /slides",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,md}\""
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,md,mdx}\""
   },
   "repository": {
     "type": "git",
