@@ -9,8 +9,8 @@ export const theme = { ...CDTheme };
 </Footer>
 
 <Cover
-	title="Design Systems 101"
-	author="Andrey Okonetchnikov & Varya Stepanova"
+  title="Design Systems 101"
+  author="Andrey Okonetchnikov & Varya Stepanova"
 />
 
 ---
@@ -100,18 +100,18 @@ This is paragraph with `inline` code
 
 ```jsx
 function Code({ children, language, inline = false }) {
-	if (typeof children !== "string") {
-		return (
-			<pre style={{ color: "firebrick" }}>
-				Code: `children` must be a string
-			</pre>
-		);
-	}
-	return (
-		<Prism {...codeTheme} useInlineStyles language={language}>
-			{children.replace(/\t/, "  ")}
-		</Prism>
-	);
+  if (typeof children !== "string") {
+    return (
+      <pre style={{ color: "firebrick" }}>
+        Code: `children` must be a string
+      </pre>
+    );
+  }
+  return (
+    <Prism {...codeTheme} useInlineStyles language={language}>
+      {children.replace(/\t/, "  ")}
+    </Prism>
+  );
 }
 ```
 
@@ -137,9 +137,9 @@ function Code({ children, language, inline = false }) {
 ---
 
 <Figure
-	src={require("./assets/component-driven.svg")}
-	alt="Component-driven Logo"
-	caption={
-		<a href="https://component-driven.io">https://component-driven.io</a>
-	}
+  src={require("./assets/component-driven.svg")}
+  alt="Component-driven Logo"
+  caption={
+    <a href="https://component-driven.io">https://component-driven.io</a>
+  }
 />
