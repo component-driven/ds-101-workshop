@@ -8,7 +8,7 @@
     "posttest": "npm run format",
     "slides:start": "mdx-deck ./slides/ds101-worskhop.mdx",
     "slides:build": "mdx-deck build ./slides/ds101-worskhop.mdx -d ./build/slides --basepath /slides",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,md}\"",
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,md,mdx}\"",
     "start": "npm run slides:start"
   },
   "repository": {
@@ -37,6 +37,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,jsx,json,md,mdx}": "prettier --write"
   }
 }
