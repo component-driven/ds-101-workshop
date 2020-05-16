@@ -6,10 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "posttest": "npm run format",
-    "slides:start": "mdx-deck ./slides/ds101-worskhop.mdx",
-    "slides:build": "mdx-deck build ./slides/ds101-worskhop.mdx -d ./build/slides --basepath /slides",
-    "format": "prettier --loglevel warn --write \"**/*.{js,css,md,mdx}\"",
-    "start": "npm run slides:start"
+    "start": "gatsby develop",
+    "build": "gatsby clean && gatsby build --prefix-paths",
+    "format": "prettier --loglevel warn --write \"**/*.{js,css,md,mdx}\""
   },
   "repository": {
     "type": "git",
@@ -23,13 +22,20 @@
   },
   "homepage": "https://github.com/component-driven/ds-101-workshop#readme",
   "dependencies": {
-    "@component-driven/mdx-deck-theme": "1.0.1",
-    "mdx-deck": "^4.1.1"
+    "@component-driven/mdx-deck-theme": "^1.1.0",
+    "mdx-deck": "^4.1.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "devDependencies": {
+    "gatsby": "^2.21.33",
+    "gatsby-plugin-compile-es6-packages": "2.1.0",
+    "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-theme-mdx-deck": "^4.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.4",
+    "react-refresh": "^0.8.2"
   },
   "husky": {
     "hooks": {
