@@ -6,6 +6,17 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-source-figma",
+      options: {
+        accessToken: "45552-946fc588-8ab5-4df5-b351-193a343ce3fe",
+        fileId: "F18zzunW3QsswVuXrcq2BR",
+        // projectId: `FIGMA_PROJECT_ID`,
+        nodeIds: ["1%3A4", "2%3A74"],
+        scale: 1,
+        format: "png",
+      },
+    },
+    {
       resolve: "gatsby-plugin-google-fonts",
       options: {
         fonts: ["work sans:400,400i,700,700i"],
