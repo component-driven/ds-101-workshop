@@ -2,16 +2,13 @@ import CDTheme from "@component-driven/mdx-deck-theme";
 
 export const theme = { ...CDTheme };
 
-<Footer>
+<Primary>
 
-[Component-Driven](https://component-driven.io)
+# Design Systems 101
 
-</Footer>
+by Andrey Okonetchnikov & Varya Stepanova
 
-<Cover
-  title="Design Systems 101"
-  author="Andrey Okonetchnikov & Varya Stepanova"
-/>
+</Primary>
 
 ---
 
@@ -27,11 +24,7 @@ export const theme = { ...CDTheme };
 
 ---
 
-<Figure
-  src={require("./assets/toast.jpg")}
-  alt="Yammy"
-  caption="Making a Toast"
-/>
+<Figure src="../assets/toast.jpg" alt="Yammy" caption="Making a Toast" />
 
 <Notes>
 
@@ -184,7 +177,7 @@ This is paragraph with `inline` code
 
 ---
 
-<Image src={require("./assets/colorsnapper.png")} size="contain" />
+<Image src="../assets/colorsnapper.png" size="contain" />
 
 ---
 
@@ -231,7 +224,7 @@ function Code({ children, language, inline = false }) {
 ---
 
 <Figure
-  src={require("./assets/component-driven.svg")}
+  src="../assets/component-driven.svg"
   alt="Component-driven Logo"
   caption={
     <a href="https://component-driven.io">https://component-driven.io</a>
