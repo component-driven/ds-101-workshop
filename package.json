@@ -30,6 +30,7 @@
   "devDependencies": {
     "gatsby": "^2.21.33",
     "gatsby-plugin-compile-es6-packages": "2.1.0",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-theme-mdx-deck": "^4.1.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.2",
