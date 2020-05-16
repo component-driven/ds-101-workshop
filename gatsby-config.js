@@ -1,4 +1,9 @@
 module.exports = {
+  siteMetadata: {
+    title: "Design Systems 101 Workshop",
+    author: "Andrey Okonetchnikov & Varya Stepanova",
+    description: "Materials and slides for the Design Systems 101 Workshop",
+  },
   plugins: [
     {
       resolve: "gatsby-plugin-google-fonts",
