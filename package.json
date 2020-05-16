@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "posttest": "npm run format",
     "start": "gatsby develop",
-    "build": "gatsby clean && gatsby build --prefix-paths && npm run styleguide:build",
+    "build": "gatsby clean && gatsby build --prefix-paths",
     "format": "prettier --loglevel warn --write \"**/*.{js,css,md,mdx}\""
   },
   "repository": {
