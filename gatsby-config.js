@@ -1,3 +1,5 @@
+const config = require("./config");
+
 module.exports = {
   siteMetadata: {
     title: "Design Systems 101 Workshop",
@@ -11,7 +13,7 @@ module.exports = {
         accessToken: "45552-946fc588-8ab5-4df5-b351-193a343ce3fe",
         fileId: "F18zzunW3QsswVuXrcq2BR",
         // projectId: `FIGMA_PROJECT_ID`,
-        nodeIds: ["1%3A4", "2%3A74"],
+        nodeIds: config.namingEx.frames,
         scale: 1,
         format: "png",
       },
