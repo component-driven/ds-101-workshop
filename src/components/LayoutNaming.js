@@ -7,8 +7,6 @@ import { namingEx } from "../../config";
 import Layout from "./Layout";
 import NamingItem from "./NamingItem";
 
-const frame = "25%3A227";
-
 export default (props) => {
   const images = useStaticQuery(graphql`
     query NamingItemImageQuery {
@@ -24,7 +22,6 @@ export default (props) => {
   const item = images.allFigmaImage.nodes.filter(
     (i) => i.id === props.pageContext.frame
   )[0];
-  console.log("LayoutNaming", props.pageContext.frame, item);
   return (
     <Layout {...props}>
       <NamingItem item={item} {...props}>
