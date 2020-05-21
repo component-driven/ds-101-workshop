@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import { Box, Label, Input, Heading, Checkbox, Grid, Button } from "theme-ui";
 
-import { parts, getInputName } from "./parts.data";
+import { parts, getInputName } from "../data/parts.data";
 
 const flatten = (obj, depth, currentDepth = 0) => {
   const array = Array.isArray(obj) ? obj : [obj];
