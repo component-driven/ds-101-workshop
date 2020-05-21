@@ -2,6 +2,28 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import { Box, Label, Input, Heading, Checkbox, Grid, Button } from "theme-ui";
 
+import { parts, getInputName } from "./parts.data";
+
+const flatten = (obj, depth, currentDepth = 0) => {
+  const array = Array.isArray(obj) ? obj : [obj];
+  return array.reduce((acc, value) => {
+    acc.push({
+      title: value.title || value,
+      level: currentDepth,
+    });
+    if (value.parts) {
+      acc = acc.concat(flatten(value.parts, depth, currentDepth + 1));
+      delete value.parts;
+    }
+    return acc;
+  }, []);
+};
+
+const partsFlattened = parts.map((category) => {
+  category.parts = flatten(category.parts);
+  return category;
+});
+
 export default () => (
   <Formik
     initialValues={{
@@ -25,17 +47,23 @@ export default () => (
         <Label htmlFor="name">Enter your name: </Label>
         <Field name="name" as={Input} />
 
-        <fieldset>
-          <legend>Visual Language</legend>
-          <Grid columns={5} gap={4}>
-            <Label>
-              <Field as={Checkbox} name="color" /> Color
-            </Label>
-            <Label>
-              <Field as={Checkbox} name="typography" /> Typography
-            </Label>
-          </Grid>
-        </fieldset>
+        {parts.map((category, i) => (
+          <fieldset>
+            <legend>{category.title}</legend>
+            {category.parts.map((part, k) => {
+              const _inputName = getInputName(category.title, part.title);
+              const _labelStyle = {
+                "padding-left": `${1 * part.level}em`,
+              };
+              return (
+                <Label style={_labelStyle}>
+                  <Field as={Checkbox} name={_inputName} />
+                  {part.title}
+                </Label>
+              );
+            })}
+          </fieldset>
+        ))}
 
         <Label htmlFor="email">Enter your email: </Label>
         <Field name="email" as={Input} />
