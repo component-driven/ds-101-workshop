@@ -20,8 +20,12 @@ const flatten = (obj, depth, currentDepth = 0) => {
 };
 
 const partsFlattened = parts.map((category) => {
-  category.parts = flatten(category.parts);
-  return category;
+  const categoryFlattened = {
+    parts: flatten(category.parts),
+    title: category.title,
+    category: category.category,
+  };
+  return categoryFlattened;
 });
 
 export default () => (
@@ -47,7 +51,7 @@ export default () => (
         <Label htmlFor="name">Enter your name: </Label>
         <Field name="name" as={Input} />
 
-        {parts.map((category, i) => (
+        {partsFlattened.map((category, i) => (
           <fieldset>
             <legend>{category.title}</legend>
             {category.parts.map((part, k) => {
