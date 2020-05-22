@@ -22,7 +22,6 @@ export default () => {
     }
   `);
   let nodes = pages.allSitePage.edges;
-  console.log("pages", pages);
   return (
     <Layout>
       <SEO title="Naming" />
