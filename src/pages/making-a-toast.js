@@ -21,14 +21,14 @@ export default () => {
         Draw the stages of making a toast in the morning. You can go wild, we
         had some people who started with buying a farm because they needed to
         produce bread. But finally you should have a nice crispy toast, and you
-        have 5 postages to illustrate the steps.
+        have 5 steps to illustrate the steps.
       </p>
       <h2>Step 2 (5 minutes)</h2>
       <p>
         With your team members, merge all the steps you have into one timeline.
         Review each other's steps and collect them all into a sequence. If it
         happens that two or three of you have exactly the same steps, you can
-        merge them. If these steps are even slightly different, keep them
+        overlap them on top of each other. If these steps are even slightly different, keep them
         separate and give them right order.{" "}
       </p>
       <ul>
