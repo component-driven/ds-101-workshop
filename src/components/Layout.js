@@ -9,8 +9,7 @@ export default (props) => {
     <>
       <Helmet>
         <link
-          as="style"
-          rel="preload"
+          rel="stylesheet"
           crossOrigin="anonymous"
           href="https://www.monolisa.dev/static/fonts.css"
         />
