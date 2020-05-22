@@ -1,10 +1,11 @@
 import CDTheme from "@component-driven/mdx-deck-theme";
+import unsplashSrc from "./unsplashSrc";
 
 import NamingAll from "../src/components/NamingAll.js";
 
 export const theme = { ...CDTheme };
 
-<Primary>
+<Primary imgSrc={unsplashSrc('9VzoRKfBsMM')}>
 
 # Design Systems 101
 
@@ -26,7 +27,11 @@ by Andrey Okonetchnikov & Varya Stepanova
 
 ---
 
-<Figure src="../assets/toast.jpg" alt="Yammy" caption="Making a Toast" />
+<Primary imgSrc="//source.unsplash.com/PTdm4YUtloY/2560x1920">
+
+# Making a Toast
+
+</Primary>
 
 <Notes>
 
@@ -58,13 +63,15 @@ Go to [Making a Toast exercise](/making-a-toast) and follow the instructions.
 
 ---
 
+<Primary imgSrc="../assets/toast2.jpg">
+
 # Presentation
 
-<Figure src="../assets/toast2.jpg" alt="Yammy" caption="Mmmmm" />
+</Primary>
 
 ---
 
-<Primary>
+<Primary imgSrc={unsplashSrc('566CgCRSNCk')}>
 
 # Naming things
 
@@ -119,7 +126,41 @@ your role (designer or developer). Follow the instructions.
 
 ---
 
+<Primary imgSrc={unsplashSrc('-K6JMRMj4x4')}>
+
+# UI Inventory
+
+Defining & Documenting Design Tokens
+
+</Primary>
+
+---
+
+<Figure src="/assets/ui-inventory-1.png" alt="UI inventory process" />
+
+---
+
+<Figure src="/assets/ui-inventory-2.png" alt="UI inventory process" />
+
+---
+
+<Figure src="/assets/ui-inventory-3.png" alt="UI inventory process" />
+
+---
+
+<Figure src="/assets/ui-inventory-4.png" alt="UI inventory process" />
+
+---
+
+<Figure src="/assets/text.png" alt="Different text styles" />
+
+---
+
+<Primary imgSrc={unsplashSrc('HpMihL323k0')}>
+
 # Parts of design system
+
+</Primary>
 
 <Notes>
 
@@ -167,7 +208,11 @@ to find out the relevant parts of your design system.
 
 ---
 
+<Primary imgSrc={unsplashSrc('M2Kxb80gqcc')}>
+
 # Pattern Journey
+
+</Primary>
 
 <Notes>
 
@@ -210,11 +255,7 @@ share information about pattern journeys at our projects.
 
 ---
 
-<Primary>
-
 # Interpretation
-
-</Primary>
 
 ---
 
@@ -239,99 +280,6 @@ share information about pattern journeys at our projects.
 # [Feedback Form](https://forms.gle/HzKZX9FEXbU6RaUs9)
 
 </Secondary>
-
----
-
-<Primary>
-
-# Primary slide
-
-</Primary>
-
----
-
-<Secondary>
-
-# Secondary slide
-
-</Secondary>
-
-<Notes>Secondary slide</Notes>
-
----
-
-> Takeaway slide
-
-<Notes>Takeaway slide</Notes>
-
----
-
-# H1
-
-## H2
-
-### H3
-
-This is paragraph with `inline` code
-
----
-
-<SplitTitle>
-
-# Ordered List
-
-1. List
-1. List
-1. List
-1. List
-
-</SplitTitle>
-
----
-
-<Image src="../assets/colorsnapper.png" size="contain" />
-
----
-
-<SplitTitle>
-
-# Code Sample
-
-```jsx
-function Code({ children, language, inline = false }) {
-  if (typeof children !== "string") {
-    return (
-      <pre style={{ color: "firebrick" }}>
-        Code: `children` must be a string
-      </pre>
-    );
-  }
-  return (
-    <Prism {...codeTheme} useInlineStyles language={language}>
-      {children.replace(/\t/, "  ")}
-    </Prism>
-  );
-}
-```
-
-</SplitTitle>
-<ThatGuy />
-
----
-
-<SplitTitle>
-
-# List with steps
-
-<Steps>
-
-- One
-- Two
-- Three
-- Four
-
-</Steps>
-</SplitTitle>
 
 ---
 

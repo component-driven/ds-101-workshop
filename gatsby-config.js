@@ -19,13 +19,6 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-fonts",
-      options: {
-        fonts: ["work sans:400,400i,700,700i"],
-        display: "swap",
-      },
-    },
-    {
       resolve: "gatsby-theme-mdx-deck",
       options: {
         // source directory
