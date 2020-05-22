@@ -1,5 +1,5 @@
-import React from "react";
-import { Image } from "theme-ui";
+import React, { useState } from "react";
+import { Grid, Image, Textarea, Input, Label, Button } from "theme-ui";
 import SEO from "../components/seo";
 
 export default (props) => {
@@ -7,6 +7,20 @@ export default (props) => {
     item,
     pageContext: { pageId, role },
   } = props;
+
+  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://api.formik.com/submit/ds101-parts/naming-ex", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pageId, role, name, description }),
+    });
+  };
 
   const title = `Piece of interface #${pageId}, for a ${role}`;
 
@@ -46,7 +60,26 @@ export default (props) => {
       <h2>{title}</h2>
       {descriptions[role]}
       {props.children}
-      <Image src={item.image} key={item.id} />
+      <Grid columns={2} gap={4}>
+        <Image src={item.image} key={item.id} />
+
+        <form onSubmit={handleSubmit}>
+          <Label for="description">Description: </Label>
+          <Textarea
+            rows={5}
+            name="description"
+            defaultValue={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Label for="name">Your name (optional): </Label>
+          <Input
+            name="name"
+            defaultValue={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Grid>
     </>
   );
 };
