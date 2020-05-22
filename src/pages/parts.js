@@ -1,8 +1,8 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
-import { Box, Label, Input, Heading, Checkbox, Grid, Button } from "theme-ui";
+import { Field, Form, Formik } from "formik";
+import { Box, Button, Checkbox, Grid, Heading, Input, Label } from "theme-ui";
 
-import { parts, getInputName } from "../data/parts.data";
+import { getInputName, parts } from "../data/parts.data";
 
 const flatten = (obj, depth, currentDepth = 0) => {
   const array = Array.isArray(obj) ? obj : [obj];
@@ -47,33 +47,54 @@ export default () => (
       );
     }}
     render={() => (
-      <Form>
-        <Label htmlFor="name">Enter your name: </Label>
-        <Field name="name" as={Input} />
+      <Box p={4}>
+        <Heading>Parts of Design System</Heading>
+        <Form>
+          <Grid gap={4}>
+            <Grid columns={2} gap={4}>
+              <Box>
+                <Label htmlFor="name">Name: </Label>
+                <Field name="name" as={Input} />
+              </Box>
+              <Box>
+                <Label htmlFor="email">Email: </Label>
+                <Field name="email" as={Input} />
+              </Box>
+            </Grid>
+            <Box
+              sx={{
+                columns: 3,
+                columnGap: 4,
+              }}
+            >
+              {partsFlattened.map((category, i) => (
+                <Box as="fieldset" sx={{ breakInside: "avoid-column" }}>
+                  <legend>{category.title}</legend>
+                  {category.parts.map((part) => {
+                    return (
+                      <Label
+                        sx={{
+                          my: 2,
+                          pl: `${1 * part.level}em`,
+                          lineHeight: 1,
+                        }}
+                      >
+                        <Field
+                          as={Checkbox}
+                          name={getInputName(category.title, part.title)}
+                        />
+                        {part.title}
+                      </Label>
+                    );
+                  })}
+                </Box>
+              ))}
+            </Box>
 
-        {partsFlattened.map((category, i) => (
-          <fieldset>
-            <legend>{category.title}</legend>
-            {category.parts.map((part, k) => {
-              const _inputName = getInputName(category.title, part.title);
-              const _labelStyle = {
-                "padding-left": `${1 * part.level}em`,
-              };
-              return (
-                <Label style={_labelStyle}>
-                  <Field as={Checkbox} name={_inputName} />
-                  {part.title}
-                </Label>
-              );
-            })}
-          </fieldset>
-        ))}
-
-        <Label htmlFor="email">Enter your email: </Label>
-        <Field name="email" as={Input} />
-
-        <Button type="submit">Submit</Button>
-      </Form>
+            <Button type="submit">Submit</Button>
+          </Grid>
+        </Form>
+      </Box>
     )}
   />
 );
