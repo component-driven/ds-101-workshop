@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Image } from "theme-ui";
 import { graphql, useStaticQuery, Link } from "gatsby";
-import Layout from "../../components/Layout";
-import SEO from "../../components/seo";
+import Layout from "../components/Layout";
+import SEO from "../components/seo";
 
 export default () => {
   const pages = useStaticQuery(graphql`
