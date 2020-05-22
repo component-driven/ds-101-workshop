@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/component-driven/ds-101-workshop#readme",
   "dependencies": {
-    "@component-driven/mdx-deck-theme": "^1.1.0",
+    "@component-driven/mdx-deck-theme": "^1.2.0",
     "mdx-deck": "^4.1.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
