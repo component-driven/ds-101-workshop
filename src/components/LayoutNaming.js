@@ -1,9 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { Box, Flex, Grid } from "theme-ui";
-import { Link } from "gatsby";
 
-import { namingEx } from "../../config";
 import Layout from "./Layout";
 import NamingItem from "./NamingItem";
 
@@ -24,7 +21,7 @@ export default (props) => {
   )[0];
   return (
     <Layout {...props}>
-      <NamingItem item={item} {...props}>
+      <NamingItem item={item} role={props.pageContext.role} {...props}>
         {props.children}
       </NamingItem>
     </Layout>

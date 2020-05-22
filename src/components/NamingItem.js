@@ -1,21 +1,85 @@
-import React from "react";
-import { Grid, Image } from "theme-ui";
-import { graphql, useStaticQuery } from "gatsby";
+import React, { useState } from "react";
+import { Grid, Image, Textarea, Input, Label, Button } from "theme-ui";
 import SEO from "../components/seo";
 
 export default (props) => {
   const {
     item,
-    pageContext: { pageId },
+    pageContext: { pageId, role },
   } = props;
 
-  const title = `Naming. Piece ${pageId}`;
+  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://api.formik.com/submit/ds101-parts/naming-ex", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ pageId, role, name, description }),
+    });
+  };
+
+  const title = `Piece of interface #${pageId}, for a ${role}`;
+
+  const descriptions = {
+    designer: (
+      <>
+        <p>
+          You are getting a mock of some interface. Please write instructions{" "}
+          <b>for a designer</b> who creates a visual design. Describe what
+          exactly a designer has to draw. You should somehow name the patterns
+          or components they are going to design, and use these names in your
+          description. Maybe you will also need to name some subparts of the
+          interface. Write in English or any other language. 3-4 sentences if
+          enough.
+        </p>
+      </>
+    ),
+    developer: (
+      <>
+        <p>
+          You are getting a mock of some interface. Please write instructions{" "}
+          <b>for a developer</b> who is going to code this into a component.
+          Describe what functionality this component has and how a user
+          interacts with it. You should somehow name the pieces of the interface
+          and use these names in your description. Maybe you also need to name
+          some subparts of the components. Write in English or any other
+          language. 3-4 sentences if enough.
+        </p>
+      </>
+    ),
+  };
 
   return (
     <>
       <SEO title={title} />
-      <h1>{title}</h1>
-      <Image src={item.image} key={item.id} />
+      <h1>Naming Exersise</h1>
+      <h2>{title}</h2>
+      {descriptions[role]}
+      {props.children}
+      <Grid columns={2} gap={4}>
+        <Image src={item.image} key={item.id} />
+
+        <form onSubmit={handleSubmit}>
+          <Label for="description">Description: </Label>
+          <Textarea
+            rows={5}
+            name="description"
+            defaultValue={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <Label for="name">Your name (optional): </Label>
+          <Input
+            name="name"
+            defaultValue={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Grid>
     </>
   );
 };
