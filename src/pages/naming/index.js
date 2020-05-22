@@ -14,6 +14,7 @@ export default () => {
             path
             context {
               pageId
+              role
             }
           }
         }
@@ -26,18 +27,42 @@ export default () => {
     <Layout>
       <SEO title="Naming" />
       <h1>Naming Ex</h1>
-      <ul>
-        {nodes.map((page) => {
-          const pageTitle = page.node.context.pageId
-            ? `Naming: Piece ${page.node.context.pageId}`
-            : `Naming: All pieces`;
-          return (
-            <li>
-              <Link to={page.node.path}>{pageTitle}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      <Grid gap={4}>
+        <Grid columns={2} gap={4}>
+          <h2>Designers</h2>
+          <h2>Developers</h2>
+        </Grid>
+        <Grid columns={2} gap={4}>
+          <ul>
+            {nodes
+              .filter((page) => page.node.context.role === "designer")
+              .map((page) => {
+                const pageTitle = page.node.context.pageId
+                  ? `Naming: Piece ${page.node.context.pageId}`
+                  : `Naming: All pieces`;
+                return (
+                  <li>
+                    <Link to={page.node.path}>{pageTitle}</Link>
+                  </li>
+                );
+              })}
+          </ul>
+          <ul>
+            {nodes
+              .filter((page) => page.node.context.role === "developer")
+              .map((page) => {
+                const pageTitle = page.node.context.pageId
+                  ? `Naming: Piece ${page.node.context.pageId}`
+                  : `Naming: All pieces`;
+                return (
+                  <li>
+                    <Link to={page.node.path}>{pageTitle}</Link>
+                  </li>
+                );
+              })}
+          </ul>
+        </Grid>
+      </Grid>
     </Layout>
   );
 };
