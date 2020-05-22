@@ -26,7 +26,11 @@ export default (props) => {
           {props.children}
         </Box>
         <Box as="footer" sx={{ flexGrow: 0 }}>
-          Footer
+          <p>© Andrey Okonetchnikov & Varya Stepanova, 2020</p>
+          <p>
+            Font: <a href="https://www.monolisa.dev?ref=workshop">MonoLisa</a>,
+            Photos: <a href="https://unsplash.com">Unsplash.com</a>
+          </p>
         </Box>
       </Flex>
     </>
