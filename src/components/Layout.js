@@ -21,6 +21,7 @@ export default (props) => {
             <Link to={"/making-a-toast"}>Making a toast</Link>
             <Link to={"/naming"}>Naming</Link>
             <Link to={"/ui-inventory"}>UI Inventory</Link>
+            <Link to={"/pattern-journey"}>Pattern Journey</Link>
           </Grid>
         </Box>
         <Box as="main" sx={{ flexGrow: 1 }}>
