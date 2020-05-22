@@ -8,6 +8,7 @@ export default (props) => {
       <Box as="header">
         <Grid as="nav" gap={4} sx={{ gridAutoFlow: "column" }}>
           <Link to={"/"}>Home</Link>
+          <Link to={"/making-a-toast"}>Making a toast</Link>
           <Link to={"/naming"}>Naming</Link>
           <Link to={"/ui-inventory"}>UI Inventory</Link>
         </Grid>
