@@ -97,6 +97,35 @@ export default class PartsExercise extends React.Component {
     }
   }
 
+  actionButton() {
+    let isButtonDisabled, buttonMessage;
+    switch (this.state.stage) {
+      case "cross-out":
+        isButtonDisabled = this.state.crossedOut.length !== 5;
+        buttonMessage =
+          this.state.crossedOut.length === 5 ? "Next" : "Cross out more";
+        return (
+          <Button type="submit" disabled={isButtonDisabled}>
+            {buttonMessage}
+          </Button>
+        );
+        break;
+      case "select":
+        isButtonDisabled = this.state.selected.length !== 5;
+        buttonMessage =
+          this.state.selected.length === 5 ? "Next" : "Select more";
+        return (
+          <Button type="submit" disabled={isButtonDisabled}>
+            {buttonMessage}
+          </Button>
+        );
+        break;
+      case "pick-up":
+        return <Button type="submit">Submit</Button>;
+        break;
+    }
+  }
+
   render() {
     return (
       <>
@@ -174,7 +203,7 @@ export default class PartsExercise extends React.Component {
                 })}
               </Box>
 
-              <Button type="submit">Submit</Button>
+              {this.actionButton()}
             </Grid>
           </form>
         </Box>
