@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Image, Textarea, Input, Label, Button } from "theme-ui";
+import { Box, Button, Grid, Image, Input, Label, Textarea } from "theme-ui";
 import SEO from "../components/seo";
 
 export default (props) => {
@@ -60,25 +60,29 @@ export default (props) => {
       <h2>{title}</h2>
       {descriptions[role]}
       {props.children}
-      <Grid columns={2} gap={4}>
+      <Grid columns={[1, 2]} gap={4}>
         <Image src={item.image} key={item.id} />
 
-        <form onSubmit={handleSubmit}>
-          <Label for="description">Description: </Label>
-          <Textarea
-            rows={5}
-            name="description"
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <Label for="name">Your name (optional): </Label>
-          <Input
-            name="name"
-            defaultValue={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <Grid as="form" gap={3} onSubmit={handleSubmit}>
+          <Box>
+            <Label for="description">Description: </Label>
+            <Textarea
+              rows={5}
+              name="description"
+              defaultValue={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Box>
+          <Box>
+            <Label for="name">Your name (optional): </Label>
+            <Input
+              name="name"
+              defaultValue={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Box>
           <Button type="submit">Submit</Button>
-        </form>
+        </Grid>
       </Grid>
     </>
   );
