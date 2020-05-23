@@ -28,7 +28,7 @@ const partsFlattened = parts.map((category) => {
   return categoryFlattened;
 });
 
-const stages = ["cross-out", "select", "pick-up"];
+const stages = ["cross-out", "select", "pick-up", "done"];
 
 const instructions = {
   "cross-out": (
@@ -47,6 +47,7 @@ const instructions = {
       ready.
     </p>
   ),
+  done: <p>Well done!</p>,
 };
 
 export default class PartsExercise extends React.Component {
