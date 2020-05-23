@@ -36,34 +36,30 @@ export default class PartsExercise extends React.Component {
     this.state = {
       stage: "cross-out",
       crossedOut: [],
+      selected: [],
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    switch (this.state.stage) {
-      case "cross-out":
-        this.crossOut();
-        break;
-    }
+
+    this.setState({
+      stage: stages[stages.indexOf(this.state.stage) + 1],
+    });
   }
 
   boxAction(e, categoryId) {
-    e.preventDefault();
     switch (this.state.stage) {
       case "cross-out":
+        this.toggleCategoryCrossOut(categoryId);
+        break;
+      case "select":
         this.toggleCategorySelect(categoryId);
         break;
     }
   }
 
-  crossOut() {
-    this.setState({
-      stage: "select",
-    });
-  }
-
-  toggleCategorySelect(categoryId) {
+  toggleCategoryCrossOut(categoryId) {
     if (this.state.crossedOut.indexOf(categoryId) === -1) {
       this.state.crossedOut.push(categoryId);
       this.setState({
@@ -76,8 +72,24 @@ export default class PartsExercise extends React.Component {
     }
   }
 
+  toggleCategorySelect(categoryId) {
+    if (this.state.crossedOut.indexOf(categoryId) !== -1) {
+      // not for crossed out categories
+      return;
+    }
+    if (this.state.selected.indexOf(categoryId) === -1) {
+      this.state.selected.push(categoryId);
+      this.setState({
+        selected: this.state.selected,
+      });
+    } else {
+      this.setState({
+        selected: this.state.selected.filter((i) => i !== categoryId),
+      });
+    }
+  }
+
   render() {
-    console.log(this.state);
     return (
       <>
         {this.state.stage}
@@ -111,6 +123,10 @@ export default class PartsExercise extends React.Component {
                     boxStyle.backgroundColor = "#EEE";
                   }
 
+                  if (this.state.selected.indexOf(i) !== -1) {
+                    boxStyle.color = "red";
+                  }
+
                   return (
                     <Box
                       as="fieldset"
@@ -131,6 +147,7 @@ export default class PartsExercise extends React.Component {
                           >
                             <Checkbox
                               name={getInputName(category.title, part.title)}
+                              disabled
                             />
                             {part.title}
                           </Label>
