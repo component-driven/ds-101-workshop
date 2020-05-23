@@ -21,6 +21,7 @@ export default (props) => {
             <Link to={"/making-a-toast"}>Making a toast</Link>
             <Link to={"/naming"}>Naming</Link>
             <Link to={"/ui-inventory"}>UI Inventory</Link>
+            <Link to={"/parts"}>Parts of design system</Link>
             <Link to={"/pattern-journey"}>Pattern Journey</Link>
           </Grid>
         </Box>
