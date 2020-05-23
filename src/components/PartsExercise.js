@@ -159,7 +159,14 @@ export default class PartsExercise extends React.Component {
         );
         break;
       case "pick-up":
-        return <Button type="submit">Submit</Button>;
+        isButtonDisabled = this.state.pickedUp.length !== 25;
+        buttonMessage =
+          this.state.pickedUp.length === 25 ? "Submit" : "Pick up more";
+        return (
+          <Button type="submit" disabled={isButtonDisabled}>
+            {buttonMessage}
+          </Button>
+        );
         break;
     }
   }
