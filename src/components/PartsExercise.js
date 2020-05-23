@@ -79,11 +79,11 @@ export default class PartsExercise extends React.Component {
   }
 
   toggleCategoryCrossOut(categoryId) {
-    if (this.state.crossedOut.length === 5) {
-      // only 5 categories
-      return;
-    }
     if (this.state.crossedOut.indexOf(categoryId) === -1) {
+      if (this.state.crossedOut.length === 5) {
+        // only 5 categories
+        return;
+      }
       this.state.crossedOut.push(categoryId);
       this.setState({
         crossedOut: this.state.crossedOut,
@@ -96,15 +96,15 @@ export default class PartsExercise extends React.Component {
   }
 
   toggleCategorySelect(categoryId) {
-    if (this.state.selected.length === 5) {
-      // only 5 categories
-      return;
-    }
     if (this.state.crossedOut.indexOf(categoryId) !== -1) {
       // not for crossed out categories
       return;
     }
     if (this.state.selected.indexOf(categoryId) === -1) {
+      if (this.state.selected.length === 5) {
+        // only 5 categories
+        return;
+      }
       this.state.selected.push(categoryId);
       this.setState({
         selected: this.state.selected,
