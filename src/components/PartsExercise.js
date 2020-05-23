@@ -56,6 +56,7 @@ export default class PartsExercise extends React.Component {
       stage: "cross-out",
       crossedOut: [],
       selected: [],
+      pickedUp: [],
     };
   }
 
@@ -112,6 +113,24 @@ export default class PartsExercise extends React.Component {
     } else {
       this.setState({
         selected: this.state.selected.filter((i) => i !== categoryId),
+      });
+    }
+  }
+
+  pickUpPart(e) {
+    const partId = e.target.name;
+
+    if (this.state.pickedUp.indexOf(partId) === -1) {
+      if (this.state.pickedUp.length === 25) {
+        return;
+      }
+      this.state.pickedUp.push(partId);
+      this.setState({
+        pickedUp: this.state.pickedUp,
+      });
+    } else {
+      this.setState({
+        pickedUp: this.state.pickedUp.filter((i) => i !== partId),
       });
     }
   }
@@ -184,14 +203,6 @@ export default class PartsExercise extends React.Component {
                     boxStyle.color = "red";
                   }
 
-                  let disabledCheckbox = true;
-                  if (
-                    this.state.stage === "pick-up" &&
-                    this.state.selected.indexOf(i) !== -1
-                  ) {
-                    disabledCheckbox = false;
-                  }
-
                   return (
                     <Box
                       as="fieldset"
@@ -202,6 +213,28 @@ export default class PartsExercise extends React.Component {
                     >
                       <legend>{category.title}</legend>
                       {category.parts.map((part) => {
+                        let disabledCheckbox = true;
+
+                        // allow pick up from selected parts
+                        if (
+                          this.state.stage === "pick-up" &&
+                          this.state.selected.indexOf(i) !== -1
+                        ) {
+                          disabledCheckbox = false;
+                        }
+                        // do not allow over limit
+                        if (this.state.pickedUp.length === 25) {
+                          disabledCheckbox = true;
+                        }
+                        // checked is always enabled
+                        if (
+                          this.state.pickedUp.indexOf(
+                            getInputName(category.title, part.title)
+                          ) !== -1
+                        ) {
+                          disabledCheckbox = false;
+                        }
+
                         return (
                           <Label
                             sx={{
@@ -213,6 +246,7 @@ export default class PartsExercise extends React.Component {
                             <Checkbox
                               name={getInputName(category.title, part.title)}
                               disabled={disabledCheckbox}
+                              onChange={this.pickUpPart.bind(this)}
                             />
                             {part.title}
                           </Label>
