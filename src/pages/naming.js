@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Image } from "theme-ui";
+import { Box, Grid, Styled } from "theme-ui";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import Layout from "../components/Layout";
 import SEO from "../components/seo";
@@ -25,14 +25,11 @@ export default () => {
   return (
     <Layout>
       <SEO title="Naming" />
-      <h1>Naming Ex</h1>
-      <Grid gap={4}>
-        <Grid columns={2} gap={4}>
-          <h2>Designers</h2>
-          <h2>Developers</h2>
-        </Grid>
-        <Grid columns={2} gap={4}>
-          <ul>
+      <Styled.h1>Naming</Styled.h1>
+      <Grid columns={2} gap={4}>
+        <Box>
+          <Styled.h2>Designers</Styled.h2>
+          <Styled.ul>
             {nodes
               .filter((page) => page.node.context.role === "designer")
               .map((page) => {
@@ -40,13 +37,16 @@ export default () => {
                   ? `Naming: Piece ${page.node.context.pageId}`
                   : `Naming: All pieces`;
                 return (
-                  <li>
+                  <Styled.li>
                     <Link to={page.node.path}>{pageTitle}</Link>
-                  </li>
+                  </Styled.li>
                 );
               })}
-          </ul>
-          <ul>
+          </Styled.ul>
+        </Box>
+        <Box>
+          <Styled.h2>Developers</Styled.h2>
+          <Styled.ul>
             {nodes
               .filter((page) => page.node.context.role === "developer")
               .map((page) => {
@@ -54,13 +54,13 @@ export default () => {
                   ? `Naming: Piece ${page.node.context.pageId}`
                   : `Naming: All pieces`;
                 return (
-                  <li>
+                  <Styled.li>
                     <Link to={page.node.path}>{pageTitle}</Link>
-                  </li>
+                  </Styled.li>
                 );
               })}
-          </ul>
-        </Grid>
+          </Styled.ul>
+        </Box>
       </Grid>
     </Layout>
   );
