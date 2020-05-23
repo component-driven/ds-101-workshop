@@ -66,6 +66,12 @@ export default class PartsExercise extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    setTimeout(() => {
+      document.querySelector("#parts-form").scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 100);
+
     if (this.state.stage === "pick-up") {
       this.sendForm();
     }
@@ -197,8 +203,7 @@ export default class PartsExercise extends React.Component {
   render() {
     return (
       <>
-        {this.state.stage}
-        <Box p={4}>
+        <Box p={4} id="parts-form">
           <Heading>Parts of Design System</Heading>
           {instructions[this.state.stage]}
           <form onSubmit={this.handleSubmit.bind(this)}>
