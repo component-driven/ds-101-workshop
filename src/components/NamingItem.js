@@ -77,7 +77,9 @@ export default (props) => {
             defaultValue={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Button type="submit">Submit</Button>
+          <Button sx={{ mt: "2" }} type="submit">
+            Submit
+          </Button>
         </form>
       </Grid>
     </>
