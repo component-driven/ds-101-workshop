@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Button, Checkbox, Grid, Heading, Input, Label } from "theme-ui";
 
 import { getInputName, parts } from "../data/parts.data";
-import { render } from "react-dom";
 
 const flatten = (obj, depth, currentDepth = 0) => {
   const array = Array.isArray(obj) ? obj : [obj];
@@ -233,15 +232,18 @@ export default class PartsExercise extends React.Component {
                 {partsFlattened.map((category, i) => {
                   let boxStyle = {
                     breakInside: "avoid-column",
+                    backgroundColor: "#EEE",
                   };
 
                   if (this.state.crossedOut.indexOf(i) !== -1) {
                     boxStyle.color = "#CCC";
                     boxStyle.backgroundColor = "#EEE";
+                    boxStyle.borderColor = "#EEE";
                   }
 
                   if (this.state.selected.indexOf(i) !== -1) {
-                    boxStyle.color = "red";
+                    boxStyle.color = "";
+                    boxStyle.backgroundColor = "";
                   }
 
                   return (
