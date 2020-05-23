@@ -63,6 +63,10 @@ export default class PartsExercise extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    if (this.state.stage === "pick-up") {
+      this.sendForm();
+    }
+
     this.setState({
       stage: stages[stages.indexOf(this.state.stage) + 1],
     });
@@ -169,6 +173,20 @@ export default class PartsExercise extends React.Component {
         );
         break;
     }
+  }
+
+  sendForm(e) {
+    fetch("https://api.formik.com/submit/ds101-parts/parts-of-design-system", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        crossedOut: this.state.crossedOut,
+        selected: this.state.selected,
+        pickedUp: this.state.pickedUp,
+      }),
+    });
   }
 
   render() {
