@@ -30,6 +30,25 @@ const partsFlattened = parts.map((category) => {
 
 const stages = ["cross-out", "select", "pick-up"];
 
+const instructions = {
+  "cross-out": (
+    <p>
+      1/3 Cross out <b>5 irrelevant categories</b>.
+    </p>
+  ),
+  select: (
+    <p>
+      2/3 Select <b>5 most-important categories</b>.
+    </p>
+  ),
+  "pick-up": (
+    <p>
+      3/3 Check up to <b>25 important parts</b> for your system. Submit when
+      ready.
+    </p>
+  ),
+};
+
 export default class PartsExercise extends React.Component {
   constructor(props) {
     super(props);
@@ -132,6 +151,7 @@ export default class PartsExercise extends React.Component {
         {this.state.stage}
         <Box p={4}>
           <Heading>Parts of Design System</Heading>
+          {instructions[this.state.stage]}
           <form onSubmit={this.handleSubmit.bind(this)}>
             <Grid gap={4}>
               <Grid columns={2} gap={4}>
