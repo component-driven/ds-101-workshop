@@ -127,6 +127,14 @@ export default class PartsExercise extends React.Component {
                     boxStyle.color = "red";
                   }
 
+                  let disabledCheckbox = true;
+                  if (
+                    this.state.stage === "pick-up" &&
+                    this.state.selected.indexOf(i) !== -1
+                  ) {
+                    disabledCheckbox = false;
+                  }
+
                   return (
                     <Box
                       as="fieldset"
@@ -147,7 +155,7 @@ export default class PartsExercise extends React.Component {
                           >
                             <Checkbox
                               name={getInputName(category.title, part.title)}
-                              disabled
+                              disabled={disabledCheckbox}
                             />
                             {part.title}
                           </Label>
