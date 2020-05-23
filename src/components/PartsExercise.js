@@ -55,6 +55,8 @@ export default class PartsExercise extends React.Component {
     super(props);
     this.state = {
       stage: "cross-out",
+      name: "",
+      email: "",
       crossedOut: [],
       selected: [],
       pickedUp: [],
@@ -183,6 +185,8 @@ export default class PartsExercise extends React.Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: this.state.name,
+        email: this.state.email,
         crossedOut: this.state.crossedOut,
         selected: this.state.selected,
         pickedUp: this.state.pickedUp,
@@ -202,11 +206,17 @@ export default class PartsExercise extends React.Component {
               <Grid columns={2} gap={4}>
                 <Box>
                   <Label htmlFor="name">Name: </Label>
-                  <Input name="name" />
+                  <Input
+                    name="name"
+                    onChange={(e) => this.setState({ name: e.target.value })}
+                  />
                 </Box>
                 <Box>
                   <Label htmlFor="email">Email: </Label>
-                  <Input name="email" />
+                  <Input
+                    name="email"
+                    onChange={(e) => this.setState({ email: e.target.value })}
+                  />
                 </Box>
               </Grid>
               <Box
