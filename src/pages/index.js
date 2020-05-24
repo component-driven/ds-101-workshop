@@ -42,6 +42,12 @@ export default () => {
             <Text>Pattern Journey</Text>
           </Card>
         </Link>
+        <a href="https://forms.gle/HzKZX9FEXbU6RaUs9">
+          <Card variant="exercise">
+            <AspectImage ratio={4 / 3} src={unsplashSrc("5QgIuuBxKwM")} />
+            <Text>Feedback Form</Text>
+          </Card>
+        </a>
       </Grid>
     </Layout>
   );
