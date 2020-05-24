@@ -12,7 +12,7 @@ const flatten = (obj, depth, currentDepth = 0) => {
     });
     if (value.parts) {
       acc = acc.concat(flatten(value.parts, depth, currentDepth + 1));
-      delete value.parts;
+      //   delete value.parts;
     }
     return acc;
   }, []);
@@ -25,6 +25,23 @@ const partsFlattened = parts.map((category) => {
     category: category.category,
   };
   return categoryFlattened;
+});
+
+let partsInBoxes = [];
+let newBox = [];
+let inBox = 0;
+parts.forEach((category, i) => {
+  category.id = i;
+  const size = category.size || 1;
+  if (inBox + size <= 4) {
+    newBox.push(category);
+    inBox += size;
+  }
+  if (inBox >= 4) {
+    partsInBoxes.push(newBox);
+    newBox = [];
+    inBox = 0;
+  }
 });
 
 const stages = ["cross-out", "select", "pick-up", "done"];
@@ -208,10 +225,60 @@ export default class PartsExercise extends React.Component {
     });
   }
 
+  drawPartItem(category, categoryId, part, level) {
+    const partTitle = part.title || part;
+    let disabledCheckbox = true;
+
+    // allow pick up from selected parts
+    if (
+      this.state.stage === "pick-up" &&
+      this.state.selected.indexOf(categoryId) !== -1
+    ) {
+      disabledCheckbox = false;
+    }
+    // do not allow over limit
+    if (this.state.pickedUp.length === pickUpLimit) {
+      disabledCheckbox = true;
+    }
+    // checked is always enabled
+    if (
+      this.state.pickedUp.indexOf(getInputName(category.title, partTitle)) !==
+      -1
+    ) {
+      disabledCheckbox = false;
+    }
+    return (
+      <Label
+        sx={{
+          my: 2,
+          pl: `${1 * level}em`,
+          lineHeight: 1,
+          color: disabledCheckbox ? "#CCC" : "",
+        }}
+      >
+        <Checkbox
+          sx={{
+            color: disabledCheckbox ? "#CCC" : "",
+          }}
+          name={getInputName(category.title, partTitle)}
+          disabled={disabledCheckbox}
+          onChange={this.pickUpPart.bind(this)}
+        />
+        {partTitle}
+      </Label>
+    );
+  }
+
   render() {
     return (
       <>
-        <Box p={4} id="parts-form">
+        <Box
+          p={4}
+          id="parts-form"
+          sx={{
+            fontSize: "12px",
+          }}
+        >
           <Heading>Parts of Design System</Heading>
           {instructions[this.state.stage]}
           <form onSubmit={this.handleSubmit.bind(this)}>
@@ -232,86 +299,62 @@ export default class PartsExercise extends React.Component {
                   />
                 </Box>
               </Grid>
-              <Box
-                sx={{
-                  columns: 3,
-                  columnGap: 4,
-                }}
-              >
-                {partsFlattened.map((category, i) => {
-                  let boxStyle = {
-                    breakInside: "avoid-column",
-                  };
-                  let legendStyle = {};
+              {partsInBoxes.map((box) => (
+                <Grid gap={4} columns={box.length}>
+                  {box.map((category) => {
+                    let boxStyle = {
+                      // breakInside: "avoid-column",
+                    };
+                    let legendStyle = {};
 
-                  if (this.state.crossedOut.indexOf(i) !== -1) {
-                    boxStyle.color = "#CCC";
-                    boxStyle.backgroundColor = "#EEE";
-                    boxStyle.borderColor = "#EEE";
-                  }
+                    if (this.state.crossedOut.indexOf(category.id) !== -1) {
+                      boxStyle.color = "#CCC";
+                      boxStyle.backgroundColor = "#EEE";
+                      boxStyle.borderColor = "#EEE";
+                    }
 
-                  if (this.state.selected.indexOf(i) !== -1) {
-                    boxStyle.borderColor = "#88D8B0";
-                    legendStyle.color = "#88D8B0";
-                  }
+                    if (this.state.selected.indexOf(category.id) !== -1) {
+                      boxStyle.borderColor = "#88D8B0";
+                      legendStyle.color = "#88D8B0";
+                    }
 
-                  return (
-                    <Box
-                      as="fieldset"
-                      sx={boxStyle}
-                      onClick={(e) => {
-                        this.boxAction(e, i);
-                      }}
-                    >
-                      <legend style={legendStyle}>{category.title}</legend>
-                      {category.parts.map((part) => {
-                        let disabledCheckbox = true;
-
-                        // allow pick up from selected parts
-                        if (
-                          this.state.stage === "pick-up" &&
-                          this.state.selected.indexOf(i) !== -1
-                        ) {
-                          disabledCheckbox = false;
-                        }
-                        // do not allow over limit
-                        if (this.state.pickedUp.length === pickUpLimit) {
-                          disabledCheckbox = true;
-                        }
-                        // checked is always enabled
-                        if (
-                          this.state.pickedUp.indexOf(
-                            getInputName(category.title, part.title)
-                          ) !== -1
-                        ) {
-                          disabledCheckbox = false;
-                        }
-
-                        return (
-                          <Label
-                            sx={{
-                              my: 2,
-                              pl: `${1 * part.level}em`,
-                              lineHeight: 1,
-                              color: disabledCheckbox ? "#CCC" : "",
-                            }}
-                          >
-                            <Checkbox
-                              sx={{
-                                color: disabledCheckbox ? "#CCC" : "",
-                              }}
-                              name={getInputName(category.title, part.title)}
-                              disabled={disabledCheckbox}
-                              onChange={this.pickUpPart.bind(this)}
-                            />
-                            {part.title}
-                          </Label>
-                        );
-                      })}
-                    </Box>
-                  );
-                })}
-              </Box>
+                    return (
+                      <Box
+                        as="fieldset"
+                        sx={boxStyle}
+                        onClick={(e) => {
+                          this.boxAction(e, category.id);
+                        }}
+                      >
+                        <legend style={legendStyle}>{category.title}</legend>
+                        <Grid gap={0} columns={category.innerColumns || 1}>
+                          {category.parts.map((part) => {
+                            return (
+                              <Box>
+                                {this.drawPartItem(
+                                  category,
+                                  category.id,
+                                  part,
+                                  0
+                                )}
+                                {part.parts &&
+                                  part.parts.map((subpart) =>
+                                    this.drawPartItem(
+                                      category,
+                                      category.id,
+                                      subpart,
+                                      1
+                                    )
+                                  )}
+                              </Box>
+                            );
+                          })}
+                        </Grid>
+                      </Box>
+                    );
+                  })}
+                </Grid>
+              ))}
 
               {this.actionButton()}
             </Grid>
