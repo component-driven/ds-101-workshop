@@ -1,6 +1,8 @@
 export const parts = [
   {
     title: "Visual language",
+    innerColumns: 4,
+    size: 4,
     category: true,
     parts: [
       {
@@ -28,6 +30,8 @@ export const parts = [
   },
   {
     title: "UI elements",
+    innerColumns: 4,
+    size: 4,
     category: true,
     parts: [
       "Paragraph",
@@ -37,6 +41,8 @@ export const parts = [
       "Lists",
       "Links",
       "Code",
+      "Divider / rule",
+      "Units / measurments",
       {
         title: "Buttons",
         parts: [
@@ -47,6 +53,10 @@ export const parts = [
           "Split buttons",
           "FAB (floating action)",
         ],
+      },
+      {
+        title: "Image",
+        parts: ["Block", "Full bleed", "Inline with positions", "Circled"],
       },
       {
         title: "Form controls",
@@ -65,17 +75,12 @@ export const parts = [
           "Validation",
         ],
       },
-      "Divider / rule",
-      "Units / measurments",
-      "Slider",
-      {
-        title: "Image",
-        parts: ["Block", "Full bleed", "Inline with positions"],
-      },
     ],
   },
   {
     title: "UI components",
+    innerColumns: 4,
+    size: 4,
     category: true,
     parts: [
       "Action bar/sheet",
@@ -132,6 +137,8 @@ export const parts = [
   },
   {
     title: "UI patterns",
+    size: 2,
+    innerColumns: 2,
     category: true,
     parts: [
       "Authentication",
@@ -149,6 +156,8 @@ export const parts = [
   {
     title: "Page templates",
     category: true,
+    innerColumns: 2,
+    size: 2,
     parts: [
       "Home",
       "Category",
