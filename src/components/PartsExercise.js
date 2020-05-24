@@ -28,22 +28,25 @@ const partsFlattened = parts.map((category) => {
 });
 
 const stages = ["cross-out", "select", "pick-up", "done"];
+const crossOutLimit = 5;
+const selectLimit = 5;
+const pickUpLimit = 25;
 
 const instructions = {
   "cross-out": (
     <p>
-      1/3 Cross out <b>5 irrelevant categories</b>.
+      1/3 Cross out <b>{crossOutLimit} irrelevant categories</b>.
     </p>
   ),
   select: (
     <p>
-      2/3 Select <b>5 most-important categories</b>.
+      2/3 Select <b>{selectLimit} most-important categories</b>.
     </p>
   ),
   "pick-up": (
     <p>
-      3/3 Check up to <b>25 important parts</b> for your system. Submit when
-      ready.
+      3/3 Check up to <b>{pickUpLimit} important parts</b> for your system.
+      Submit when ready.
     </p>
   ),
   done: <p>Well done!</p>,
@@ -93,7 +96,7 @@ export default class PartsExercise extends React.Component {
 
   toggleCategoryCrossOut(categoryId) {
     if (this.state.crossedOut.indexOf(categoryId) === -1) {
-      if (this.state.crossedOut.length === 5) {
+      if (this.state.crossedOut.length === crossOutLimit) {
         // only 5 categories
         return;
       }
@@ -114,7 +117,7 @@ export default class PartsExercise extends React.Component {
       return;
     }
     if (this.state.selected.indexOf(categoryId) === -1) {
-      if (this.state.selected.length === 5) {
+      if (this.state.selected.length === selectLimit) {
         // only 5 categories
         return;
       }
@@ -133,7 +136,7 @@ export default class PartsExercise extends React.Component {
     const partId = e.target.name;
 
     if (this.state.pickedUp.indexOf(partId) === -1) {
-      if (this.state.pickedUp.length === 25) {
+      if (this.state.pickedUp.length === pickUpLimit) {
         return;
       }
       this.state.pickedUp.push(partId);
@@ -151,9 +154,11 @@ export default class PartsExercise extends React.Component {
     let isButtonDisabled, buttonMessage;
     switch (this.state.stage) {
       case "cross-out":
-        isButtonDisabled = this.state.crossedOut.length !== 5;
+        isButtonDisabled = this.state.crossedOut.length !== crossOutLimit;
         buttonMessage =
-          this.state.crossedOut.length === 5 ? "Next" : "Cross out more";
+          this.state.crossedOut.length === crossOutLimit
+            ? "Next"
+            : "Cross out more";
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
@@ -161,9 +166,9 @@ export default class PartsExercise extends React.Component {
         );
         break;
       case "select":
-        isButtonDisabled = this.state.selected.length !== 5;
+        isButtonDisabled = this.state.selected.length !== selectLimit;
         buttonMessage =
-          this.state.selected.length === 5 ? "Next" : "Select more";
+          this.state.selected.length === selectLimit ? "Next" : "Select more";
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
@@ -171,9 +176,11 @@ export default class PartsExercise extends React.Component {
         );
         break;
       case "pick-up":
-        isButtonDisabled = this.state.pickedUp.length !== 25;
+        isButtonDisabled = this.state.pickedUp.length !== pickUpLimit;
         buttonMessage =
-          this.state.pickedUp.length === 25 ? "Submit" : "Pick up more";
+          this.state.pickedUp.length === pickUpLimit
+            ? "Submit"
+            : "Pick up more";
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
@@ -266,7 +273,7 @@ export default class PartsExercise extends React.Component {
                           disabledCheckbox = false;
                         }
                         // do not allow over limit
-                        if (this.state.pickedUp.length === 25) {
+                        if (this.state.pickedUp.length === pickUpLimit) {
                           disabledCheckbox = true;
                         }
                         // checked is always enabled
