@@ -3,46 +3,27 @@ import { Box, Button, Checkbox, Grid, Heading, Input, Label } from "theme-ui";
 
 import { getInputName, parts } from "../data/parts.data";
 
-const flatten = (obj, depth, currentDepth = 0) => {
-  const array = Array.isArray(obj) ? obj : [obj];
-  return array.reduce((acc, value) => {
-    acc.push({
-      title: value.title || value,
-      level: currentDepth,
-    });
-    if (value.parts) {
-      acc = acc.concat(flatten(value.parts, depth, currentDepth + 1));
-      //   delete value.parts;
-    }
-    return acc;
-  }, []);
+const toBox = (parts) => {
+  return parts.reduce(
+    (acc, category, i) => {
+      const newBox = acc[acc.length - 1];
+      let inBox = newBox.map((c) => c.size || 1).reduce((a, b) => a + b, 0);
+      category.id = i;
+      const size = category.size || 1;
+      if (inBox + size <= 4) {
+        newBox.push(category);
+      }
+      inBox += size;
+      if (inBox >= 4) {
+        acc.push([]);
+      }
+      return acc;
+    },
+    [[]]
+  );
 };
 
-const partsFlattened = parts.map((category) => {
-  const categoryFlattened = {
-    parts: flatten(category.parts),
-    title: category.title,
-    category: category.category,
-  };
-  return categoryFlattened;
-});
-
-let partsInBoxes = [];
-let newBox = [];
-let inBox = 0;
-parts.forEach((category, i) => {
-  category.id = i;
-  const size = category.size || 1;
-  if (inBox + size <= 4) {
-    newBox.push(category);
-    inBox += size;
-  }
-  if (inBox >= 4) {
-    partsInBoxes.push(newBox);
-    newBox = [];
-    inBox = 0;
-  }
-});
+const partsInBoxes = toBox(parts);
 
 const stages = ["cross-out", "select", "pick-up", "done"];
 const crossOutLimit = 5;
