@@ -43,8 +43,8 @@ const instructions = {
   ),
   "pick-up": (
     <p>
-      3/3 Check up to <b>{pickUpLimit} important parts</b> for your system.
-      Submit when ready.
+      3/3 Check up to <b>{pickUpLimit} important parts</b> in previously
+      selected categories.
     </p>
   ),
   done: <p>Well done!</p>,
