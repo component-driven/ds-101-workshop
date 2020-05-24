@@ -158,7 +158,7 @@ export default class PartsExercise extends React.Component {
         buttonMessage =
           this.state.crossedOut.length === crossOutLimit
             ? "Next"
-            : "Cross out more";
+            : `Cross out ${crossOutLimit - this.state.crossedOut.length} more`;
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
@@ -168,7 +168,9 @@ export default class PartsExercise extends React.Component {
       case "select":
         isButtonDisabled = this.state.selected.length !== selectLimit;
         buttonMessage =
-          this.state.selected.length === selectLimit ? "Next" : "Select more";
+          this.state.selected.length === selectLimit
+            ? "Next"
+            : `Select ${selectLimit - this.state.selected.length} more`;
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
@@ -179,8 +181,8 @@ export default class PartsExercise extends React.Component {
         isButtonDisabled = this.state.pickedUp.length !== pickUpLimit;
         buttonMessage =
           this.state.pickedUp.length === pickUpLimit
-            ? "Submit"
-            : "Pick up more";
+            ? "Done"
+            : `Pick up ${pickUpLimit - this.state.pickedUp.length} more`;
         return (
           <Button type="submit" disabled={isButtonDisabled}>
             {buttonMessage}
