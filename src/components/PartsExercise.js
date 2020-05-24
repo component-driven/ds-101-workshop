@@ -233,7 +233,7 @@ export default class PartsExercise extends React.Component {
         sx={{
           my: 2,
           pl: `${1 * level}em`,
-          lineHeight: 1,
+          lineHeight: 2,
           color: disabledCheckbox ? "#CCC" : "",
         }}
       >
