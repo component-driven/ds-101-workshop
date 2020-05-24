@@ -232,8 +232,8 @@ export default class PartsExercise extends React.Component {
                 {partsFlattened.map((category, i) => {
                   let boxStyle = {
                     breakInside: "avoid-column",
-                    backgroundColor: "#EEE",
                   };
+                  let legendStyle = {};
 
                   if (this.state.crossedOut.indexOf(i) !== -1) {
                     boxStyle.color = "#CCC";
@@ -242,8 +242,8 @@ export default class PartsExercise extends React.Component {
                   }
 
                   if (this.state.selected.indexOf(i) !== -1) {
-                    boxStyle.color = "";
-                    boxStyle.backgroundColor = "";
+                    boxStyle.borderColor = "#88D8B0";
+                    legendStyle.color = "#88D8B0";
                   }
 
                   return (
@@ -254,7 +254,7 @@ export default class PartsExercise extends React.Component {
                         this.boxAction(e, i);
                       }}
                     >
-                      <legend>{category.title}</legend>
+                      <legend style={legendStyle}>{category.title}</legend>
                       {category.parts.map((part) => {
                         let disabledCheckbox = true;
 
