@@ -284,9 +284,13 @@ export default class PartsExercise extends React.Component {
                               my: 2,
                               pl: `${1 * part.level}em`,
                               lineHeight: 1,
+                              color: disabledCheckbox ? "#CCC" : "",
                             }}
                           >
                             <Checkbox
+                              sx={{
+                                color: disabledCheckbox ? "#CCC" : "",
+                              }}
                               name={getInputName(category.title, part.title)}
                               disabled={disabledCheckbox}
                               onChange={this.pickUpPart.bind(this)}
