@@ -173,6 +173,7 @@ export const parts = [
   },
   {
     title: "Layout system",
+    size: 2,
     category: true,
     parts: [
       "Grids for sites",

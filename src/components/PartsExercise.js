@@ -43,8 +43,8 @@ const instructions = {
   ),
   "pick-up": (
     <p>
-      3/3 Check up to <b>{pickUpLimit} important parts</b> for your system.
-      Submit when ready.
+      3/3 Check up to <b>{pickUpLimit} important parts</b> in previously
+      selected categories.
     </p>
   ),
   done: <p>Well done!</p>,
@@ -233,7 +233,7 @@ export default class PartsExercise extends React.Component {
         sx={{
           my: 2,
           pl: `${1 * level}em`,
-          lineHeight: 1,
+          lineHeight: 2,
           color: disabledCheckbox ? "#CCC" : "",
         }}
       >
