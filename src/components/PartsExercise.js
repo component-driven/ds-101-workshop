@@ -32,22 +32,22 @@ const pickUpLimit = 25;
 
 const instructions = {
   "cross-out": (
-    <p>
-      1/3 Cross out <b>{crossOutLimit} irrelevant categories</b>.
-    </p>
+    <h2>
+      1 of 3: Cross out {crossOutLimit} <em>irrelevant</em> categories.
+    </h2>
   ),
   select: (
-    <p>
-      2/3 Select <b>{selectLimit} most-important categories</b>.
-    </p>
+    <h2>
+      2 of 3: Select {selectLimit} <em>most-important</em> categories.
+    </h2>
   ),
   "pick-up": (
-    <p>
-      3/3 Check up to <b>{pickUpLimit} important parts</b> in previously
+    <h2>
+      3/3 Check up to <em>{pickUpLimit} important parts</em> in previously
       selected categories.
-    </p>
+    </h2>
   ),
-  done: <p>Well done!</p>,
+  done: <h2>Well done!</h2>,
 };
 
 export default class PartsExercise extends React.Component {
@@ -231,19 +231,20 @@ export default class PartsExercise extends React.Component {
     return (
       <Label
         sx={{
-          my: 2,
-          pl: `${1 * level}em`,
-          lineHeight: 2,
-          color: disabledCheckbox ? "#CCC" : "",
+          my: 1,
+          pl: 4 * level,
+          color: disabledCheckbox ? "primary" : "text",
         }}
       >
         <Checkbox
-          sx={{
-            color: disabledCheckbox ? "#CCC" : "",
-          }}
           name={getInputName(category.title, partTitle)}
           disabled={disabledCheckbox}
           onChange={this.pickUpPart.bind(this)}
+          sx={{
+            mr: 1,
+            width: "1rem",
+            height: "1rem",
+          }}
         />
         {partTitle}
       </Label>
@@ -284,19 +285,27 @@ export default class PartsExercise extends React.Component {
                 <Grid gap={4} columns={box.length}>
                   {box.map((category) => {
                     let boxStyle = {
-                      // breakInside: "avoid-column",
+                      display:
+                        this.state.stage === "pick-up" ? "none" : "block",
+                      border: "thin",
+                      borderRadius: "medium",
+                      borderColor: "muted",
+                      transition: "opacity 0.5s ease-in-out",
+                      cursor: "pointer",
+                      ":hover": {
+                        bg: "muted",
+                      },
                     };
                     let legendStyle = {};
 
                     if (this.state.crossedOut.indexOf(category.id) !== -1) {
-                      boxStyle.color = "#CCC";
-                      boxStyle.backgroundColor = "#EEE";
-                      boxStyle.borderColor = "#EEE";
+                      boxStyle.opacity = 0.25;
                     }
 
                     if (this.state.selected.indexOf(category.id) !== -1) {
-                      boxStyle.borderColor = "#88D8B0";
-                      legendStyle.color = "#88D8B0";
+                      boxStyle.display = "block";
+                      boxStyle.borderColor = "secondary";
+                      boxStyle.bg = "muted";
                     }
 
                     return (

@@ -34,7 +34,6 @@ export default (props) => {
           as="footer"
           sx={{
             flexGrow: 0,
-            color: "muted",
           }}
         >
           <Styled.p sx={{ fontSize: "s", m: 0 }}>

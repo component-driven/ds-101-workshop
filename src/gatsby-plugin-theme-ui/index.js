@@ -2,10 +2,46 @@ import theme from "@component-driven/mdx-deck-theme";
 
 export default {
   ...theme,
+  colors: {
+    ...theme.colors,
+    // secondary: "#ccc",
+    muted: "#efeff3",
+  },
+  borders: {
+    thin: "1px solid",
+  },
+  radii: {
+    small: 2,
+    medium: 5,
+    round: 99999,
+  },
   text: {
     heading: {
       ...theme.text.heading,
       textAlign: "left",
+    },
+  },
+  forms: {
+    checkbox: {
+      color: "primary",
+    },
+  },
+  buttons: {
+    primary: {
+      color: "background",
+      bg: "primary",
+      "&:disabled": {
+        opacity: 0.5,
+        cursor: "not-allowed",
+      },
+      "&:hover:not(:disabled)": {
+        cursor: "pointer",
+        bg: "text",
+      },
+    },
+    secondary: {
+      color: "background",
+      bg: "secondary",
     },
   },
   cards: {
