@@ -232,7 +232,7 @@ export default class PartsExercise extends React.Component {
       <Label
         sx={{
           my: 1,
-          pl: 4 * level,
+          pl: 3 * level,
           color: disabledCheckbox ? "primary" : "text",
         }}
       >
