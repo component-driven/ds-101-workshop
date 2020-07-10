@@ -315,7 +315,8 @@ export default class PartsExercise extends React.Component {
                     if (this.state.selected.indexOf(category.id) !== -1) {
                       boxStyle.display = "block";
                       boxStyle.borderColor = "secondary";
-                      boxStyle.bg = "muted";
+                      boxStyle.bg =
+                        this.state.stage === "pick-up" ? "background" : "muted";
                     }
 
                     return (
