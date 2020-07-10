@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Button, Checkbox, Grid, Heading, Input, Label } from "theme-ui";
+import {
+  Box,
+  Flex,
+  Button,
+  Checkbox,
+  Grid,
+  Heading,
+  Input,
+  Label,
+} from "theme-ui";
 
 import { getInputName, parts } from "../data/parts.data";
 
@@ -254,10 +263,11 @@ export default class PartsExercise extends React.Component {
   render() {
     return (
       <>
-        <Box
+        <Flex
           p={4}
           id="parts-form"
           sx={{
+            flexDirection: "column",
             fontSize: "12px",
           }}
         >
@@ -346,10 +356,20 @@ export default class PartsExercise extends React.Component {
                 </Grid>
               ))}
 
-              {this.actionButton()}
+              <Flex
+                sx={{
+                  flexDirection: "column",
+                  position: "sticky",
+                  bottom: 0,
+                  py: 4,
+                  bg: "background",
+                }}
+              >
+                {this.actionButton()}
+              </Flex>
             </Grid>
           </form>
-        </Box>
+        </Flex>
       </>
     );
   }
